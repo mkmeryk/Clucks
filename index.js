@@ -40,10 +40,8 @@ app.use(logger('dev'));
 app.set('view engine','ejs');
 app.set('views','views');
 
-
-//homepage
-app.get('/',(req,res) =>{
-    res.render('./home')
+app.get('/',(req,res)=>{
+    res.redirect('/clucks')
 })
 
 //sign in page
@@ -59,15 +57,20 @@ app.post('/sign_in',(req,res) =>{
     const COOKIE_MAX_AGE = 1000*60*60*24;
     const username = req.body.username;
     res.cookie('username',username,{maxAge:COOKIE_MAX_AGE});
-    res.redirect('/')
+    res.redirect('/clucks')
 
 })
 
 //sign out
 app.post('/sign_out',(req,res) =>{
     res.clearCookie('username');
-    res.redirect('/');
+    res.redirect('/clucks');
 })
+
+//routers
+const cluckRouter = require('./routes/clucks');
+app.use('/clucks', cluckRouter)
+
 
 
 //server
