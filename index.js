@@ -71,7 +71,32 @@ app.post('/sign_out',(req,res) =>{
 
 })
 
-//
+//an empty arr to carry the values of each hashtags repetition
+hashtagsArr=[];
+
+//hashtag count
+app.locals.hashtag = function (arr) {
+    arr.map((item) => {
+      counter = {};
+  
+      const index = hashtagsArr.findIndex((element) => element.name.toLowerCase() === item.toLowerCase());
+      if(hashtagsArr[index]){
+          hashtagsArr[index] = {
+              count: hashtagsArr[index].count+1,
+              name: hashtagsArr[index].name
+            }
+        }
+  
+      return item;
+    });
+  
+    return hashtagsArr;
+};
+
+
+
+
+//human friendly date
 app.locals.relativeDays = function (timestamp){
     
     //each minute,hour and day in ms
@@ -79,7 +104,6 @@ app.locals.relativeDays = function (timestamp){
     const oneHourInMs = oneMinuteInMs * 60;
     const oneDayInMs = oneHourInMs * 24;
     const elapseTime = new Date().getTime() - timestamp
-
 
     let howLongAgo = []
 
@@ -111,6 +135,7 @@ app.locals.relativeDays = function (timestamp){
 
 //routers
 const cluckRouter = require('./routes/clucks');
+const { count } = require('console');
 app.use('/clucks', cluckRouter);
 
 //server
