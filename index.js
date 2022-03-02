@@ -25,7 +25,6 @@ app.use((req,res,next) =>{
 
 })
 
-
 //static assets middleware
 const path = require('path');
 app.use(express.static(path.join(__dirname,'public')));
@@ -40,43 +39,48 @@ app.use(logger('dev'));
 app.set('view engine','ejs');
 app.set('views','views');
 
+//rerouting '/' to '/clucks/' to render index.ejs to show the clucks 
 app.get('/',(req,res)=>{
-    res.redirect('/clucks')
+
+    res.redirect('/clucks');
+
+})
+
+//sign in page template
+app.get('/signIn',(req,res) =>{
+
+    res.render('./signIn');
+
 })
 
 //sign in page
-app.get('/signIn',(req,res) =>{
-    res.render('./signIn')
-})
-
-
-
-//sign in
 app.post('/sign_in',(req,res) =>{
 
     const COOKIE_MAX_AGE = 1000*60*60*24;
     const username = req.body.username;
     res.cookie('username',username,{maxAge:COOKIE_MAX_AGE});
-    res.redirect('/clucks')
+    res.redirect('/clucks');
 
 })
 
 //sign out
 app.post('/sign_out',(req,res) =>{
+
     res.clearCookie('username');
     res.redirect('/clucks');
+
 })
 
 //routers
 const cluckRouter = require('./routes/clucks');
-app.use('/clucks', cluckRouter)
-
-
+app.use('/clucks', cluckRouter);
 
 //server
 const PORT = 3000;
-const DOMAIN = "localhost"
-
+const DOMAIN = "localhost";
 app.listen(PORT,DOMAIN, () =>{
-    console.log(`Server is listening on http://${DOMAIN}:${PORT}`)
-})
+
+    console.log(`Server is listening on http://${DOMAIN}:${PORT}`);
+
+});
+

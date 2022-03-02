@@ -1,5 +1,7 @@
 <nav >
+
     <div class="d-flex justify-content-between">
+
         <div >
             <a href="/clucks"><img width="70px" height="70px" src="/images/chicken.jpeg" alt="the real cluckr photo" class="rounded-circle p-2"></a>
         </div>
@@ -7,12 +9,15 @@
         <div class="d-flex justify-content-end p-2">
 
             <div class="nav nav-pills p-2">
+
                 <a class="btn btn-secondary" type="button" href="/clucks/new">cluck!</a>
         
             </div>
 
             <div class="nav nav-pills p-2 ">
+
                 <% if(username){ %>
+
                     <li>
                         <span class="tp-2 mx-3"><%- username%></span>
                     </li>
@@ -24,17 +29,19 @@
                     </li>
                     
                 <%}else{%>
+
                     <li>
                         <a class="btn btn-secondary" type="button" href="/signIn"> sign in</a>
                     </li>
+
                 <%}%>
+
             </div>
             
-        
         </div>
 
-        
     </div>
 
 </nav>
+
 <hr>
