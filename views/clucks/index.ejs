@@ -1,0 +1,50 @@
+<%- include('../partials/header.ejs')%>
+
+    <div class="page">
+
+        <% for(let cluck of clucks){ %>
+
+            <div class="card mb-4">
+
+                <div class="card-body">
+
+                    <div class="d-flex"> 
+
+                        <div class="p-2 ">
+                            <img class="rounded" src="<%- avatar %>" alt="avatar">
+                        </div>
+
+                        <div>
+                            <div class="d-flex">
+                                <h5>
+                                    <%- cluck.username%>
+                                </h5>
+                                <h5 class="fs-5 p-1">
+                                    *
+                                </h5>
+
+                                <label class="ms-rtl-2"><%- relativeDays(cluck.created_at) %></label>
+                            </div>
+                                
+                            <p>
+                                <%- cluck.content%>
+                            </p>
+                                
+                            <% if(cluck.image_url){ %>
+                
+                                <img class="rounded" style="width:300px;border:1px solid #000;" src="<%- cluck.image_url%>" alt="">
+                
+                            <% }    %>
+                        </div>
+
+                    </div>
+        
+                </div>
+
+            </div>
+
+        <% } %>
+
+    </div>
+
+<%- include('../partials/footer.ejs')%>

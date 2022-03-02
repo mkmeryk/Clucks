@@ -1,0 +1,33 @@
+<%- include('../partials/header.ejs')%>
+
+    <div class="page">
+
+        <div >
+            <% if(username){ %>
+
+                <form action="/clucks" method="POST" class="container-xl border border-secondary border-2 rounded">
+
+                    <%- include('../partials/formInput.ejs')%>
+                    <div class="p-2 gap-2 d-flex justify-content-end">
+
+                        <input type="submit" value="Cluck!" class="btn btn-outline-secondary">
+                    
+                    </div>
+                    
+                </form>
+    
+            <% }else{ %>
+    
+                <h5>
+                    Log in to 
+                    <a href="/signIn">here</a>
+                    create a post
+                </h5>
+    
+            <% } %>
+
+        </div>
+
+    </div>
+
+<%- include('../partials/footer.ejs')%>

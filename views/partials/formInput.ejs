@@ -1,0 +1,21 @@
+<div class="mt-2" >
+    <label for="content" class="opacity-50">Content</label>
+    <textarea 
+    name="content"
+    class="form-control"
+    cols="30" 
+    rows="10" 
+    placeholder="Whatchoo cluckin' ' bout?"
+    ><%= cluck?cluck.content:'' %></textarea>
+
+</div>
+
+<div class="mt-2">
+    <label for="image_url" class="opacity-50">Image Url</label>
+    <input 
+    type="url" 
+    name="image_url" 
+    class="form-control"
+    value="<%= cluck?cluck.image_url:'' %>">
+</div>
+
