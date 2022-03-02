@@ -71,6 +71,44 @@ app.post('/sign_out',(req,res) =>{
 
 })
 
+//
+app.locals.relativeDays = function (timestamp){
+    
+    //each minute,hour and day in ms
+    const oneMinuteInMs = 1000 * 60;
+    const oneHourInMs = oneMinuteInMs * 60;
+    const oneDayInMs = oneHourInMs * 24;
+    const elapseTime = new Date().getTime() - timestamp
+
+
+    let howLongAgo = []
+
+    if(elapseTime < oneMinuteInMs ){
+
+        howLongAgo += Math.round(elapseTime/1000) + 'seconds';
+
+    }
+
+    if(elapseTime < oneHourInMs && elapseTime > oneMinuteInMs){
+        
+
+        howLongAgo += Math.round(elapseTime/oneMinuteInMs) + 'minutes';
+
+    }
+
+    if(elapseTime < oneDayInMs && elapseTime > oneHourInMs){
+
+        howLongAgo += Math.round(elapseTime/oneHourInMs) + 'hours';
+
+    }else if(elapseTime > oneDayInMs){
+
+        howLongAgo += Math.round(elapseTime/oneDayInMs) + 'days';
+    }
+
+    return howLongAgo
+
+}
+
 //routers
 const cluckRouter = require('./routes/clucks');
 app.use('/clucks', cluckRouter);

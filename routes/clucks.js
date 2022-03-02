@@ -11,6 +11,7 @@ router.get('/',(req,res) =>{
     const faker = require('faker');
     const avatar = faker.image.nature(50,50,true);
 
+
     //using clucks database to access the clucks 
     knex('clucks')
     .orderBy('created_at','desc')
